@@ -1,1 +1,1 @@
-Changing owner and group readme
+Changing ownership readme
