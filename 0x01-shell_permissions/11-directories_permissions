@@ -1,2 +1,2 @@
 #!/bin/bash
-çhmod a+x*/
+chmod 777 */
