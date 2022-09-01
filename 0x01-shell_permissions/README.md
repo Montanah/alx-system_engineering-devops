@@ -1,1 +1,1 @@
-Giving everyone permission
+permissions readme
