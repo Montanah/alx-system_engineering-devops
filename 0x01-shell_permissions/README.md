@@ -1,1 +1,1 @@
-Displays groups
+Ownership change
