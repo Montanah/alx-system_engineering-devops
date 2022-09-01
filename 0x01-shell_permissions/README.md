@@ -1,1 +1,1 @@
-mirror readme
+directories readme
