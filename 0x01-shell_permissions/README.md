@@ -1,1 +1,1 @@
-directories readme
+Making directory readme
