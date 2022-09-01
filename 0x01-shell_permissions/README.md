@@ -1,1 +1,1 @@
-John doe readme
+mirror readme
