@@ -1,1 +1,1 @@
-Smiley readme
+Display file contents readme
