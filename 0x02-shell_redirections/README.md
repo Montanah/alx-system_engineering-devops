@@ -1,1 +1,1 @@
-Truncate
+Reverse
