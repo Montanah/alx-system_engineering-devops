@@ -1,1 +1,1 @@
-Counting word
+Displaying lines
