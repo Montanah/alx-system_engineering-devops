@@ -1,1 +1,1 @@
-Last line readme
+Deleting js files
