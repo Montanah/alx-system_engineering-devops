@@ -1,1 +1,1 @@
-sorting readme
+Display pattern lines
