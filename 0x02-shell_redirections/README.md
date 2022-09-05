@@ -1,1 +1,1 @@
-Displaying lines
+pattern dispay
