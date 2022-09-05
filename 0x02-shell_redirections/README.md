@@ -1,1 +1,1 @@
-Letters only
+Translating letters
