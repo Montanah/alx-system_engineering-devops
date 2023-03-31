@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # installs and starts nginx with custom index page
 
-apt-get update
+sudo apt-get update
 sudo apt-get install -y nginx
 
 sudo mkdir /etc/nginx/html
@@ -15,4 +15,4 @@ printf %s "server {
 }
 " > /etc/nginx/sites-available/default
 
-service nginx restart
+sudo service nginx restart
