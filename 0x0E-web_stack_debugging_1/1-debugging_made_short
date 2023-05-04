@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# script to automate the fix of  nginx not listening on correct port
+# script to automate the fix of nginx not listening on correct port
 sudo cp /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
 sudo service nginx restart
-sudo pkill nginx
+sudo kill "$(pgrep 'nginx' | head -1)"
