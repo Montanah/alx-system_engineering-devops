@@ -14,6 +14,6 @@ sudo sed -i 's@#error_page 404 /404.html;@error_page 404 /404.html;\n    locatio
 
 #Configures Nginx so that its HTTP response contains a custom header X-Served-By with its value being the hostname
 string_for_replacement="server_name _;\n\tadd_header X-Served-By \$hostname;\n\trewrite ^\/redirect_me https:\/\/www.youtube.com/watch?v=QH2-TGUlwu4 permanent;"
-sudo sed -i '/server_name _;/a add_header X-Served-By $hostname;' /etc/nginx/sites-available/default
+sudo sed -i "/server_name _;/a add_header X-Served-By $hostname;" /etc/nginx/sites-available/default
 
 sudo service nginx restart
