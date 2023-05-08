@@ -38,13 +38,13 @@ defaults
 	option http-server-close
 
 frontend www-http
-        bind 100.25.4.139:80
+        bind *:80
         mode http
         http-request add-header X-Forwarded-Proto http
         default_backend iomititi-backend
 
 frontend www-https
-        bind 100.25.4.139:443 ssl crt /etc/haproxy/certs/www.iomititi.tech.pem
+        bind *:443 ssl crt /etc/haproxy/certs/www.iomititi.tech.pem
         http-request add-header X-Forwarded-Proto https
         acl letsencrypt-acl path_beg /.well-known/acme-challenge/
         use_backend letsencrypt-backend if letsencrypt-acl
