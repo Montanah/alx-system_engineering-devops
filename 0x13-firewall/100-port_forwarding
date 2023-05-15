@@ -1,0 +1,8 @@
+sudo ufw status
+sudo iptables -t nat -A PREROUTING -p tcp --dport 8080 -j REDIRECT --to-port 80
+sudo mkdir -p /etc/iptables
+sudo iptables-save | sudo tee /etc/iptables/rules.v4
+sudo iptables -t nat -L
+sudo ufw enable
+sudo service ufw restart
+sudo ufw status verbose
