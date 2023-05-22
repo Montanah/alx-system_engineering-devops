@@ -1,16 +1,17 @@
 #!/usr/bin/python3
-'''A script that returns information about an employee's TODO list progress'''
+''' a script that returns information about
+an employee's TODO list progress. '''
 
 if __name__ == "__main__":
-	import requests
-	from sys import argv
+    import requests
+    from sys import argv
 
-	employee_ID = int(argv[1])
-	r = requests.get('https://jsonplaceholder.typicode.com/users/{}'
+    employee_ID = int(argv[1])
+    r = requests.get('https://jsonplaceholder.typicode.com/users/{}'
                      .format(employee_ID))
-	employee_name = r.json().get('name')
+    employee_name = r.json().get('name')
 
-	r = requests.get('https://jsonplaceholder.typicode.com/todos')
+    r = requests.get('https://jsonplaceholder.typicode.com/todos')
     tasks = r.json()
     all_tasks = [item for item in tasks if item.get('userId') == employee_ID]
     done_tasks = [item for item in all_tasks if item.get('completed') is True]
