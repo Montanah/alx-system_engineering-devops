@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 ''' a script that returns information about
-an employee's TODO list progress & exports data in the CSV format'''
+an employee's TODO list progress & exports data in the CSV format '''
 
 if __name__ == "__main__":
 
