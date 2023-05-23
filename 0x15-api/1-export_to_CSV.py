@@ -2,7 +2,6 @@
 ''' a script that exports data in the CSV format '''
 
 if __name__ == "__main__":
-
     import requests
     from sys import argv
 
