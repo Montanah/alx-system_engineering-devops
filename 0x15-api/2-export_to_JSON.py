@@ -20,7 +20,7 @@ if __name__ == "__main__":
     for task in all_tasks:
         emp_dict.get(employee_ID).append({'task': task.get('title'),
                                           'completed': task.get('completed'),
-		                                  'username': employee_name})
+                                          'username': employee_name})
 
     with open('{}.json'.format(employee_ID), 'w+') as f:
         json.dump(emp_dict, f)
