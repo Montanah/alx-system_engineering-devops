@@ -3,7 +3,8 @@
 
 if __name__ == "__main__":
     """a script that exports data in the CSV format"""
-    import requests
+    
+	import requests
     from sys import argv
 
     employee_ID = int(argv[1])
