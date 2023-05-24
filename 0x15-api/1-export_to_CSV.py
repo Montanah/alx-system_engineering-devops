@@ -1,10 +1,10 @@
 #!/usr/bin/python3
-"""a script that exports data in the CSV format"""
+""" a script that exports data in the CSV format """
 
 if __name__ == "__main__":
-    """a script that exports data in the CSV format"""
-    
-	import requests
+    """ a script that exports data in the CSV format """
+
+    import requests
     from sys import argv
 
     employee_ID = int(argv[1])
