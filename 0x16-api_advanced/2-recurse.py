@@ -16,12 +16,20 @@ def recurse(subreddit, hot_list=[], after=''):
     response = requests.get(url, headers=headers, allow_redirects=False)
 
     if response.status_code == 200:
-        for post in response.json().get('data').get('children'):
-            hot_list.append(post.get('data').get('title'))
-        after = response.json().get('data').get('after')
-        if after is None:
-            return hot_list
+        data = response.json().get('data')
+        if data and data.get('children'):
+            children = data.get('children')
+            for post in children:
+                title = post.get('data').get('title')
+                hot_list.append(title)
+
+            """Check if there are more pages"""
+            after = data.get('after')
+            if after:
+                return recurse(subreddit, hot_list, after)
+            else:
+                return hot_list
         else:
-            return recurse(subreddit, hot_list, after)
+            return hot_list
     else:
         return None
