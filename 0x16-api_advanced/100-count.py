@@ -15,33 +15,30 @@ def count_words(subreddit, word_list, after='', keywords=None):
     headers = {'User-Agent': 'Mozilla/5.0'}
     response = requests.get(url, headers=headers, allow_redirects=False)
 
-    if response.status_code != 200:
-        return
+    if keywords is None:
+        keywords = {key: 0 for key in word_list}
 
     try:
-        data = response.json()['data']
-        if data['dist'] == 0:
-            sorted_keywords = sorted(keywords.items(),
-                                     key=lambda x: (-x[1], x[0]))
-            for keyword, count in sorted_keywords:
-                print(f'{keyword}: {count}')
-            return
-        else:
-            children = data['children']
-            for post in children:
-                title = post['data']['title']
-                words = title.lower().split()
-                for word in words:
-                    # Ignore variations of word endings
-                    if word.endswith(('.', '!', '_')):
-                        continue
-                    # Convert Javascript to javascript for counting
-                    if word == 'javascript':
-                        word = 'java'
-                    if word in word_list:
-                        keywords[word] = keywords.get(word, 0) + 1
-
-            after = data['after']
-            return count_words(subreddit, word_list, after, keywords)
+        if response.json()['data']['dist'] == 0:
+            return None
+        for post in response.json()['data']['children']:
+            title = post['data']['title'].lower()
+            for word in word_list:
+                keywords[word] += title.count(word)
     except (KeyError, IndexError):
-        return
+        if after == '':
+            return None
+
+    if (response.json()['data']['after'] is None):
+        return keywords
+
+    keywords = count_words(subreddit, word_list,
+                           response.json()['data']['after'], keywords)
+
+    if after == '':
+        for key, value in sorted(keywords.items(),
+                                 key=lambda tup: tup[1], reverse=True):
+            if (value != 0):
+                print('{}: {}'.format(key, value))
+
+    return(keywords)
