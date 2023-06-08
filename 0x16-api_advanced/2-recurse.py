@@ -21,7 +21,7 @@ def recurse(subreddit, hot_list=[], after=''):
         for post in response.json()['data']['children']:
             hot_list.append(post['data']['title'])
     except (KeyError, IndexError):
-        if (after == ''):
+        if after == '':
             return None
 
     if (response.json()['data']['after'] is None):
