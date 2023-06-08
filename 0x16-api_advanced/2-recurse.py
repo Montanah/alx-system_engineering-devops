@@ -15,16 +15,21 @@ def recurse(subreddit, hot_list=[], after=''):
     headers = {'User-Agent': 'Mozilla/5.0'}
     response = requests.get(url, headers=headers, allow_redirects=False)
 
+    if response.status_code != 200:
+        return None
+
     try:
-        if response.json()['data']['dist'] == 0:
-            return None
-        for post in response.json()['data']['children']:
-            hot_list.append(post['data']['title'])
+        data = response.json()['data']
+        if data['dist'] == 0:
+            return hot_list
+        else:
+            children = data['children']
+            for post in children:
+                hot_list.append(post['data']['title'])
+            after = data['after']
+            if after is None:
+                return hot_list
+            else:
+                return recurse(subreddit, hot_list, after)
     except (KeyError, IndexError):
-        if after == '':
-            return None
-
-    if (response.json()['data']['after'] is None):
-        return hot_list
-
-    return recurse(subreddit, hot_list, response.json()['data']['after'])
+        return None
