@@ -11,7 +11,7 @@ def count_words(subreddit, word_list, after='', keywords=None):
     """
     Returns a dictionary of word counts for a given list of subreddits
     """
-    url = 'https://www.reddit.com/r/{}/hot.json?after={}'.format(subreddit, after)
+    url = 'https://www.reddit.com/r/{subreddit}/hot.json?after={after}'
     headers = {'User-Agent': 'Mozilla/5.0'}
     response = requests.get(url, headers=headers, allow_redirects=False)
 
@@ -33,11 +33,11 @@ def count_words(subreddit, word_list, after='', keywords=None):
             return keywords
 
         keywords = count_words(subreddit, word_list,
-                           response.json()['data']['after'], keywords)
+                               response.json()['data']['after'], keywords)
 
         if after == '':
             for key, value in sorted(keywords.items(),
-                                 key=lambda tup: tup[1], reverse=True):
+                                     key=lambda tup: tup[1], reverse=True):
                 if (value != 0):
                     print('{}: {}'.format(key, value))
 

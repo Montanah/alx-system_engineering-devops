@@ -11,7 +11,7 @@ def recurse(subreddit, hot_list=[], after=''):
     '''
     returns full list of hot posts in a subreddit
     '''
-    url = 'https://www.reddit.com/r/{}/hot.json?after={}'.format(subreddit, after)
+    url = 'https://www.reddit.com/r/{subreddit}/hot.json?after={after}'
     headers = {'User-Agent': 'Mozilla/5.0'}
     response = requests.get(url, headers=headers, allow_redirects=False)
 
