@@ -29,16 +29,11 @@ def count_words(subreddit, word_list, after='', keywords=None):
         if after == '':
             return None
 
-    if (response.json()['data']['after'] is None):
-        return keywords
+    if response.json()['data']['after'] is None and after == '':
+        sorted_keywords = sorted(keywords.items(), key=lambda x: (-x[1], x[0]))
+        for keyword, count in sorted_keywords:
+            if count != 0:
+                print(f"{keyword}: {count}")
 
-    keywords = count_words(subreddit, word_list,
-                           response.json()['data']['after'], keywords)
-
-    if after == '':
-        for key, value in sorted(keywords.items(),
-                                 key=lambda tup: tup[1], reverse=True):
-            if (value != 0):
-                print('{}: {}'.format(key, value))
-
-    return(keywords)
+    return count_words(subreddit, word_list, response.json()['data']['after'],
+                       keywords)
